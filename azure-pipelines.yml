@@ -10,6 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -21,9 +27,3 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
     options: 'package -Dmaven.test.skip'
-
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '11'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
